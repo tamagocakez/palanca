@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palanca Note</title>
     <style>
         body {
@@ -15,7 +16,7 @@
             position: relative;
         }
         .palanca-container {
-            width: 80%; /* Default width for larger screens */
+            width: 80%; /* Adjusted width */
             background-color: #ffffff;
             padding: 30px;
             text-align: center;
@@ -29,18 +30,18 @@
             margin-bottom: 20px;
         }
         .stop img {
-            width: 50%;
+            width: 50%; /* Adjusted width */
             max-width: 200px;
             height: auto;
         }
         h1 {
             color: red;
-            font-size: 24px;
+            font-size: 24px; /* Adjusted font size */
         }
         p {
             color: #34495e;
             line-height: 1.6;
-            font-size: 18px;
+            font-size: 18px; /* Adjusted font size */
         }
         .input-container {
             margin: 20px 0;
@@ -49,7 +50,7 @@
         }
         .input-container input {
             padding: 12px;
-            font-size: 24px;
+            font-size: 24px; /* Adjusted font size */
             width: 60px;
             text-align: center;
             margin: 0 10px;
@@ -58,7 +59,7 @@
         }
         .input-container button {
             padding: 12px 40px;
-            font-size: 20px;
+            font-size: 20px; /* Adjusted font size */
             background-color: #ccc;
             color: #fff;
             border: none;
@@ -78,26 +79,26 @@
                 align-items: stretch;
             }
             .palanca-container {
-                width: 75%; /* Adjusted width for smaller screens */
+                width: 90%; /* Adjusted width */
             }
             .stop img {
-                width: 100%;
-                max-width: 150px;
+                width: 100%; /* Adjusted width */
+                max-width: 150px; /* Adjusted max-width */
             }
             h1 {
-                font-size: 20px;
+                font-size: 20px; /* Adjusted font size */
             }
             p {
-                font-size: 16px;
+                font-size: 16px; /* Adjusted font size */
             }
             .input-container input {
                 padding: 10px;
-                font-size: 18px;
-                width: 50px;
+                font-size: 18px; /* Adjusted font size */
+                width: 50px; /* Adjusted width */
             }
             .input-container button {
                 padding: 10px 30px;
-                font-size: 16px;
+                font-size: 16px; /* Adjusted font size */
             }
         }
     </style>
@@ -147,4 +148,8 @@
                 <input type="text" id="letter3" maxlength="1">
                 <input type="text" id="letter4" maxlength="1">
             </div>
-           
+            <button onclick="checkName()">Submit</button>
+        </div>
+    </div>
+</body>
+</html>
