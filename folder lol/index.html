@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palanca Note</title>
     <style>
         body {
@@ -7,10 +10,15 @@
             background-color: #f9f9f9;
             margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             position: relative;
         }
@@ -22,6 +30,7 @@
             position: relative;
             margin-top: 20px;
             border-radius: 10px;
+            font-size: 125%; 
         }
         .stop {
             display: flex;
@@ -29,7 +38,7 @@
             margin-bottom: 20px;
         }
         .stop img {
-            width: 75%; /* Adjusted width */
+            width: 50%; 
             max-width: 300px;
             height: auto;
         }
@@ -40,7 +49,7 @@
         p {
             color: #34495e;
             line-height: 1.6;
-            font-size: 18px;
+            font-size: 18px; 
         }
         .input-container {
             margin: 20px 0;
@@ -49,18 +58,18 @@
         }
         .input-container input {
             padding: 12px;
-            font-size: 24px;
+            font-size: 24px; 
             width: 60px;
             text-align: center;
             margin: 0 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-        .input-container button {
+        button {
             padding: 12px 40px;
-            font-size: 20px;
-            background-color: #ccc;
-            color: #fff;
+            font-size: 20px; 
+            background-color: #4CAF50; 
+            color: white;
             border: none;
             cursor: pointer;
             border-radius: 25px;
@@ -70,8 +79,8 @@
             letter-spacing: 1px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .input-container button:hover {
-            background-color: #999;
+        button:hover {
+            background-color: #45a049; 
         }
         @media only screen and (max-width: 600px) {
             .container {
@@ -81,7 +90,7 @@
                 max-width: 90%;
             }
             .stop img {
-                width: 100%;
+                width: 75%;
                 max-width: 200px;
             }
             h1 {
@@ -92,12 +101,12 @@
             }
             .input-container input {
                 padding: 10px;
-                font-size: 18px;
+                font-size: 18px; 
                 width: 50px;
             }
             .input-container button {
                 padding: 10px 30px;
-                font-size: 16px;
+                font-size: 16px; 
             }
         }
     </style>
@@ -136,7 +145,7 @@
 <body>
     <div class="container">
         <div class="stop">
-            <img src="stop.png" alt="stop">
+            <img src="folder lol/stop.png" alt="stop">
         </div>
         <div class="palanca-container">
             <h1>🛑 Stop! This page is blocked!</h1>
