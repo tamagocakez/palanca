@@ -21,18 +21,22 @@
             text-align: center;
             position: relative;
             margin-top: 20px;
+            border-radius: 10px;
         }
         .stop img {
-            width: 150px;
+            width: 80%;
+            max-width: 300px;
             height: auto;
             margin-bottom: 20px;
         }
         h1 {
             color: red;
+            font-size: 24px;
         }
         p {
             color: #34495e;
             line-height: 1.6;
+            font-size: 18px;
         }
         .input-container {
             margin: 20px 0;
@@ -40,15 +44,17 @@
             justify-content: center;
         }
         .input-container input {
-            padding: 10px;
-            font-size: 18px;
-            width: 40px;
+            padding: 12px;
+            font-size: 24px;
+            width: 60px;
             text-align: center;
-            margin: 0 5px;
+            margin: 0 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
         .input-container button {
             padding: 12px 40px;
-            font-size: 18px;
+            font-size: 20px;
             background-color: #2c3e50;
             color: #ffffff;
             border: none;
@@ -59,6 +65,33 @@
         }
         .input-container button:hover {
             background-color: #1a252f;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                align-items: stretch;
+            }
+            .palanca-container {
+                max-width: 90%;
+            }
+            .stop img {
+                width: 100%;
+                max-width: 200px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .input-container input {
+                padding: 10px;
+                font-size: 18px;
+                width: 50px;
+            }
+            .input-container button {
+                padding: 10px 30px;
+                font-size: 16px;
+            }
         }
     </style>
     <script>
@@ -96,7 +129,7 @@
 <body>
     <div class="container">
         <div class="stop">
-            <img src="stop.png" alt="stop">
+            <img src="folder lol/stop.png" alt="stop">
         </div>
         <div class="palanca-container">
             <h1>🛑 Stop! This page is blocked!</h1>
