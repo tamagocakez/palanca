@@ -7,13 +7,28 @@
             background-color: #f9f9f9;
             margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .palanca-container {
             max-width: 600px;
-            margin: 50px auto;
             background-color: #ffffff;
             padding: 30px;
             text-align: center;
+            position: relative;
+        }
+        .stop {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
         }
         h1 {
             color: red;
@@ -49,7 +64,7 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
-            margin-left: 10px;
+            margin-top: 20px;
         }
     </style>
     <script>
@@ -85,15 +100,20 @@
     </script>
 </head>
 <body>
-    <div class="palanca-container">
-        <h1>🛑 Stop! This page is blocked!</h1>
-        <p>Enter your name to continue:</p>
-        <div class="input-container">
-            <input type="text" id="letter1" maxlength="1">
-            <input type="text" id="letter2" maxlength="1">
-            <input type="text" id="letter3" maxlength="1">
-            <input type="text" id="letter4" maxlength="1">
+    <div class="container">
+        <div class="palanca-container">
+            <h1>🛑 Stop! This page is blocked!</h1>
+            <p>Enter your name to continue:</p>
+            <div class="input-container">
+                <input type="text" id="letter1" maxlength="1">
+                <input type="text" id="letter2" maxlength="1">
+                <input type="text" id="letter3" maxlength="1">
+                <input type="text" id="letter4" maxlength="1">
+            </div>
             <button onclick="checkName()">Submit</button>
+        </div>
+        <div class="stop">
+            <img src="folder lol/stop.png" alt="stop">
         </div>
     </div>
 </body>
