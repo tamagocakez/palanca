@@ -14,19 +14,22 @@
         }
         .container {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Push the container to the left */
             align-items: center;
+            width: 100%; /* Ensure the container spans the full width of the page */
+            padding: 0 20px; /* Add padding to the sides */
         }
         .palanca-container {
-            max-width: 600px;
+            max-width: 400px; /* Adjusted width */
             background-color: #ffffff;
             padding: 30px;
             text-align: center;
             position: relative;
+            margin-right: auto; /* Push the container to the left */
         }
         .stop {
             position: absolute;
-            right: -100px;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
         }
