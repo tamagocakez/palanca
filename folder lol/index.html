@@ -15,7 +15,7 @@
             position: relative;
         }
         .palanca-container {
-            max-width: 80%;
+            width: 80%; /* Default width for larger screens */
             background-color: #ffffff;
             padding: 30px;
             text-align: center;
@@ -29,8 +29,8 @@
             margin-bottom: 20px;
         }
         .stop img {
-            width: 75%; /* Adjusted width */
-            max-width: 300px;
+            width: 50%;
+            max-width: 200px;
             height: auto;
         }
         h1 {
@@ -78,11 +78,11 @@
                 align-items: stretch;
             }
             .palanca-container {
-                max-width: 90%;
+                width: 75%; /* Adjusted width for smaller screens */
             }
             .stop img {
                 width: 100%;
-                max-width: 200px;
+                max-width: 150px;
             }
             h1 {
                 font-size: 20px;
@@ -147,8 +147,4 @@
                 <input type="text" id="letter3" maxlength="1">
                 <input type="text" id="letter4" maxlength="1">
             </div>
-            <button onclick="checkName()">Submit</button>
-        </div>
-    </div>
-</body>
-</html>
+           
