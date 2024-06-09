@@ -4,7 +4,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-image: url('walaakongmaisipnabg.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -27,7 +30,7 @@
             position: relative;
             margin-top: 20px;
             border-radius: 10px;
-            font-size: 125%; 
+            font-size: 125%;
         }
         .stop {
             display: flex;
@@ -35,7 +38,7 @@
             margin-bottom: 20px;
         }
         .stop img {
-            width: 80%; 
+            width: 80%;
             max-width: 500px;
             height: auto;
         }
@@ -46,7 +49,7 @@
         p {
             color: #34495e;
             line-height: 1.6;
-            font-size: 18px; 
+            font-size: 18px;
         }
         .input-container {
             margin: 20px 0;
@@ -55,7 +58,7 @@
         }
         .input-container input {
             padding: 12px;
-            font-size: 24px; 
+            font-size: 24px;
             width: 60px;
             text-align: center;
             margin: 0 10px;
@@ -64,8 +67,8 @@
         }
         button {
             padding: 12px 40px;
-            font-size: 20px; 
-            background-color: #4CAF50; 
+            font-size: 20px;
+            background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
@@ -77,7 +80,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         button:hover {
-            background-color: #45a049; 
+            background-color: #45a049;
         }
         @media only screen and (max-width: 600px) {
             .container {
@@ -87,8 +90,8 @@
                 max-width: 90%;
             }
             .stop img {
-                width: 100%;
-                max-width: 300px;
+                width: 75%;
+                max-width: 200px;
             }
             h1 {
                 font-size: 20px;
@@ -98,12 +101,12 @@
             }
             .input-container input {
                 padding: 10px;
-                font-size: 18px; 
+                font-size: 18px;
                 width: 50px;
             }
             .input-container button {
                 padding: 10px 30px;
-                font-size: 16px; 
+                font-size: 16px;
             }
         }
     </style>
@@ -167,10 +170,10 @@
 </head>
 <body>
     <div class="container">
+        <div class="stop">
+            <img src="stop.png" alt="stop">
+        </div>
         <div class="palanca-container">
-            <div class="stop">
-                <img src="stop.png" alt="stop">
-            </div>
             <h1 id="typing-heading"></h1>
             <p>Enter the pin to continue:</p>
             <div class="input-container">
