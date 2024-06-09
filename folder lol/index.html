@@ -66,50 +66,8 @@
             border-radius: 5px;
             margin-top: 20px;
         }
-        /* Mobile styles */
-        @media (max-width: 600px) {
-            body {
-                font-size: 1.2em; 
-                padding: 10px; 
-            }
-            .palanca-container {
-                max-width: 100%; 
-                padding: 40px;
-            }
-            h1 {
-                font-size: 2em; 
-            }
-            p {
-                font-size: 1.5em; 
-            }
-            .input-container input {
-                padding: 15px;
-                font-size: 22px;
-                width: 60px;
-            }
-            .input-container button {
-                padding: 15px 30px;
-                font-size: 22px;
-            }
-            .stop {
-                right: -80px; 
-                width: 50px;
-            }
-        }
     </style>
     <script>
-        function typeWriter(element, text, speed) {
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
         function checkName() {
             const letter1 = document.getElementById('letter1').value.toUpperCase();
             const letter2 = document.getElementById('letter2').value.toUpperCase();
@@ -138,9 +96,6 @@
                     }
                 });
             });
-
-            const heading = document.getElementById('typing-heading');
-            typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
         });
     </script>
 </head>
@@ -158,7 +113,7 @@
             <button onclick="checkName()">Submit</button>
         </div>
         <div class="stop">
-            <img src="stop.png" alt="stop">
+            <img src="folder lol/stop.png" alt="stop">
         </div>
     </div>
 </body>
