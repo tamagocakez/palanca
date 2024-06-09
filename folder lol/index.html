@@ -121,6 +121,23 @@
                 alert('Incorrect password, please try again!');
             }
         }
+        function typeWriter(element, text, speed) {
+            let i = 0;
+        function type() {
+            if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+            }
+            }
+            type();
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const heading = document.getElementById('typing-heading');
+        typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
+        });
+
         document.addEventListener('DOMContentLoaded', (event) => {
             const inputs = document.querySelectorAll('.input-container input');
             inputs.forEach((input, index) => {
