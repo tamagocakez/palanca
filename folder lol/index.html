@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blocked Website?</title>
     <link rel="icon" href="catlol.png" type="image/x-icon">
     <style>
@@ -21,6 +24,9 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .palanca-container {
             max-width: 80%;
@@ -31,6 +37,7 @@
             margin-top: 20px;
             border-radius: 10px;
             font-size: 125%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .stop {
             display: flex;
@@ -85,6 +92,7 @@
         @media only screen and (max-width: 600px) {
             body {
                 background-image: url('mobileBG.jpeg');
+                background-size: 100% 100%;
             }
             .container {
                 align-items: stretch;
@@ -94,7 +102,7 @@
             }
             .stop img {
                 width: 75%;
-                max-width: 200px;
+                max-width: 300px;
             }
             h1 {
                 font-size: 20px;
