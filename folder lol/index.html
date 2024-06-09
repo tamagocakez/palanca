@@ -5,7 +5,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
@@ -23,7 +22,7 @@
             align-items: center;
             position: relative;
             border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added shadow */
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2); 
         }
         .palanca-container {
             max-width: 80%;
@@ -83,9 +82,10 @@
         button:hover {
             background-color: #45a049;
         }
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 600px) and (orientation: portrait) {
             body {
                 background-image: url('mobileBG.jpeg');
+                background-size: cover; 
             }
             .container {
                 max-width: 90%;
@@ -115,9 +115,11 @@
                 font-size: 16px;
             }
         }
-        @media only screen and (min-width: 601px) {
+
+        @media only screen and (min-width: 601px) and (orientation: landscape) {
             body {
                 background-image: url('pcBG.jpeg');
+                background-size: cover; /* Adjusted background size for PC in landscape */
             }
         }
     </style>
