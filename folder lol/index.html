@@ -8,12 +8,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px; 
-            padding: 0;
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
         }
         .container {
             display: flex;
@@ -22,20 +22,14 @@
             align-items: center;
             border-radius: 10px;
             box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2); 
-            width: 100%;
-            max-width: 600px; 
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
         }
         .palanca-container {
-            background-color: rgba(255, 255, 255, 0.9); 
+            max-width: 80%;
+            background-color: #ffffff;
             padding: 30px;
             text-align: center;
             border-radius: 10px;
             font-size: 125%;
-            width: 100%;
         }
         .stop img {
             width: 100%; 
@@ -84,11 +78,17 @@
         @media only screen and (max-width: 600px) and (orientation: portrait) {
             body {
                 background-image: url('mobileBG.jpeg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
             }
             .container {
-                margin: 20px;
+                max-width: 90%;
+                margin: 0 5%;
             }
             .palanca-container {
+                max-width: 90%;
                 padding: 20px;
             }
             .stop img {
@@ -114,6 +114,10 @@
         @media only screen and (min-width: 601px) and (orientation: landscape) {
             body {
                 background-image: url('pcBG.jpeg');
+                background-size: cover; 
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
             }
         }
     </style>
