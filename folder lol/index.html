@@ -121,21 +121,22 @@
                 alert('Incorrect password, please try again!');
             }
         }
+
         function typeWriter(element, text, speed) {
             let i = 0;
-        function type() {
-            if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-            }
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
             }
             type();
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
             const heading = document.getElementById('typing-heading');
-        typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
+            typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
         });
 
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -161,7 +162,7 @@
             <img src="stop.png" alt="stop">
         </div>
         <div class="palanca-container">
-            <h1>🛑 Stop! This page is blocked!</h1>
+            <h1 id="typing-heading"></h1>
             <p>Enter your name to continue:</p>
             <div class="input-container">
                 <input type="text" id="letter1" maxlength="1">
