@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blocked Website?</title>
     <link rel="icon" href="catlol.png" type="image/x-icon">
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,7 +26,6 @@
             justify-content: center;
             align-items: center;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .palanca-container {
             max-width: 80%;
@@ -121,23 +119,6 @@
                 margin: 2% auto;
             }
         }
-        #flower {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        #congrats {
-            display: none;
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 30px;
-            color: #000;
-            font-family: "Times New Roman", Times, serif;
-        }
     </style>
     <script>
         function checkName() {
@@ -147,7 +128,8 @@
             const letter4 = document.getElementById('letter4').value.toUpperCase();
             const name = letter1 + letter2 + letter3 + letter4;
             if (name === 'PHIL') {
-                drawFlowerAndMessage();
+                alert('Correct password! You are now being redirected to the palanca...');
+                window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
             } else {
                 alert('Incorrect password, please try again!');
                 clearInputs();
@@ -162,82 +144,11 @@
             document.getElementById('letter1').focus();
         }
 
-        function drawFlowerAndMessage() {
-            document.body.style.background = "#fff";
-            document.body.innerHTML = '<canvas id="flower" width="800" height="600"></canvas><div id="congrats">Congrats on your graduation!</div>';
-
-            const canvas = document.getElementById('flower');
-            const ctx = canvas.getContext('2d');
-
-            // Draw sunflower
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const petalLength = 100;
-            const petalWidth = 30;
-            const numPetals = 20;
-
-            // Draw petals
-            ctx.fillStyle = 'yellow';
-            ctx.save();
-            ctx.translate(centerX, centerY);
-            for (let i = 0; i < numPetals; i++) {
-                ctx.rotate((Math.PI * 2) / numPetals);
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(petalWidth / 2, petalLength);
-                ctx.lineTo(-petalWidth / 2, petalLength);
-                ctx.closePath();
-                ctx.fill();
-            }
-            ctx.restore();
-
-            // Draw center
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 50, 0, Math.PI * 2, false);
-            ctx.fillStyle = 'brown';
-            ctx.fill();
-
-            // Draw stem
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY + 50);
-            ctx.lineTo(centerX, canvas.height);
-            ctx.lineWidth = 10;
-            ctx.strokeStyle = 'green';
-            ctx.stroke();
-
-            // Draw leaves
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY + 100);
-            ctx.lineTo(centerX - 50, centerY + 150);
-            ctx.lineTo(centerX, centerY + 200);
-            ctx.closePath();
-            ctx.fillStyle = 'green';
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY + 150);
-            ctx.lineTo(centerX + 50, centerY + 200);
-            ctx.lineTo(centerX, centerY + 250);
-            ctx.closePath();
-            ctx.fillStyle = 'green';
-            ctx.fill();
-
-            // Typewriter effect
-            const congrats = document.getElementById('congrats');
-            congrats.style.display = 'block';
-            typeWriter(congrats, congrats.textContent, 100);
-
-            setTimeout(() => {
-                window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
-            }, 5000);
-        }
-
         function typeWriter(element, text, speed) {
-            element.textContent = '';
             let i = 0;
             function type() {
                 if (i < text.length) {
-                    element.textContent += text.charAt(i);
+                    element.innerHTML += text.charAt(i);
                     i++;
                     setTimeout(type, speed);
                 }
