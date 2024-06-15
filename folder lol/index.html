@@ -120,6 +120,29 @@
                 margin: 2% auto;
             }
         }
+        #flower {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #congrats {
+            display: none;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: #FFD700;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
     <script>
         function checkName() {
@@ -129,8 +152,14 @@
             const letter4 = document.getElementById('letter4').value.toUpperCase();
             const name = letter1 + letter2 + letter3 + letter4;
             if (name === 'PHIL') {
-                alert('Correct password! You are now being redirected to the palanca...');
-                window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
+                drawFlower();
+                setTimeout(() => {
+                    document.getElementById('congrats').style.display = 'block';
+                }, 500);
+                setTimeout(() => {
+                    alert('Correct password! You are now being redirected to the palanca...');
+                    window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
+                }, 4000);
             } else {
                 alert('Incorrect password, please try again!');
                 clearInputs();
@@ -157,12 +186,43 @@
             type();
         }
 
+        function drawFlower() {
+            const canvas = document.getElementById('flower');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const petalLength = 50;
+            const petalWidth = 20;
+
+            canvas.style.display = 'block';
+
+            function drawPetal(x, y, rotation) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(rotation);
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.quadraticCurveTo(petalWidth, petalLength / 2, 0, petalLength);
+                ctx.quadraticCurveTo(-petalWidth, petalLength / 2, 0, 0);
+                ctx.fillStyle = '#FFD700';
+                ctx.fill();
+                ctx.restore();
+            }
+
+            for (let i = 0; i < 8; i++) {
+                drawPetal(centerX, centerY, (i * Math.PI) / 4);
+            }
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+            ctx.fillStyle = '#FF6347';
+            ctx.fill();
+        }
+
         document.addEventListener('DOMContentLoaded', (event) => {
             const heading = document.getElementById('typing-heading');
             typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
-        });
 
-        document.addEventListener('DOMContentLoaded', (event) => {
             const inputs = document.querySelectorAll('.input-container input');
             inputs.forEach((input, index) => {
                 input.addEventListener('input', () => {
@@ -197,5 +257,7 @@
             <button onclick="checkName()">Submit</button>
         </div>
     </div>
+    <canvas id="flower" width="200" height="200"></canvas>
+    <div id="congrats">Congrats on your graduation!</div>
 </body>
 </html>
