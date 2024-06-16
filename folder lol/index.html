@@ -26,7 +26,6 @@
             justify-content: center;
             align-items: center;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .palanca-container {
             max-width: 80%;
@@ -117,10 +116,7 @@
             }
             .container {
                 max-width: 50%;
-                margin: 5% auto;
-            }
-            .palanca-container {
-                padding: 20px;
+                margin: 2% auto;
             }
         }
     </style>
@@ -139,48 +135,49 @@
                 clearInputs();
             }
         }
+javascript
+Copy code
+    function clearInputs() {
+        document.getElementById('letter1').value = '';
+        document.getElementById('letter2').value = '';
+        document.getElementById('letter3').value = '';
+        document.getElementById('letter4').value = '';
+        document.getElementById('letter1').focus();
+    }
 
-        function clearInputs() {
-            document.getElementById('letter1').value = '';
-            document.getElementById('letter2').value = '';
-            document.getElementById('letter3').value = '';
-            document.getElementById('letter4').value = '';
-            document.getElementById('letter1').focus();
-        }
-
-        function typeWriter(element, text, speed) {
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
+    function typeWriter(element, text, speed) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
             }
-            type();
         }
+        type();
+    }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const heading = document.getElementById('typing-heading');
-            typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
-        });
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const heading = document.getElementById('typing-heading');
+        typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
+    });
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const inputs = document.querySelectorAll('.input-container input');
-            inputs.forEach((input, index) => {
-                input.addEventListener('input', () => {
-                    if (input.value.length === 1 && index < inputs.length - 1) {
-                        inputs[index + 1].focus();
-                    }
-                });
-                input.addEventListener('keyup', (event) => {
-                    if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
-                        inputs[index - 1].focus();
-                    }
-                });
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const inputs = document.querySelectorAll('.input-container input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keyup', (event) => {
+                if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
+                    inputs[index - 1].focus();
+                }
             });
         });
-    </script>
+    });
+</script>
 </head>
 <body>
     <div class="container">
