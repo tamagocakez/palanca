@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             background-image: url('pcBG.jpeg');
-            background-size: cover; 
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
@@ -36,7 +36,7 @@
             font-size: 125%;
         }
         .stop img {
-            width: 100%; 
+            width: 100%;
             max-width: 500px;
             height: auto;
         }
@@ -92,7 +92,7 @@
                 padding: 20px;
             }
             .stop img {
-                max-width: 100%; 
+                max-width: 100%;
             }
             h1 {
                 font-size: 20px;
@@ -141,7 +141,7 @@
                 drawSunflower();
                 setTimeout(() => {
                     window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
-                }, 5000); // 5 seconds delay before redirection
+                }, 10000); // 10 seconds delay before redirection
             } else {
                 alert('Incorrect password, please try again!');
                 clearInputs();
@@ -190,7 +190,7 @@
         });
 
         function drawSunflower() {
-            document.body.innerHTML = ''; // Clear the page content
+            document.body.innerHTML = '';
 
             const canvas = document.createElement('canvas');
             canvas.width = window.innerWidth;
@@ -201,32 +201,58 @@
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
             const petalCount = 20;
-            const petalLength = 150;
-            const petalWidth = 30;
+            const petalLength = 200;
+            const petalWidth = 80;
+            const drawSpeed = 50;
 
-            ctx.fillStyle = '#FFD700'; // Sunflower yellow color
+            ctx.fillStyle = '#FFD700';
 
-            for (let i = 0; i < petalCount; i++) {
-                const angle = (i * 2 * Math.PI) / petalCount;
-                const x = centerX + Math.cos(angle) * petalLength;
-                const y = centerY + Math.sin(angle) * petalLength;
+            let petalIndex = 0;
 
+            function drawPetal(angle) {
                 ctx.beginPath();
                 ctx.moveTo(centerX, centerY);
-                ctx.lineTo(x, y);
-                ctx.lineTo(centerX + Math.cos(angle + Math.PI / petalCount) * petalWidth, centerY + Math.sin(angle + Math.PI / petalCount) * petalWidth);
+                ctx.quadraticCurveTo(
+                    centerX + Math.cos(angle + Math.PI / petalCount) * petalWidth,
+                    centerY + Math.sin(angle + Math.PI / petalCount) * petalWidth,
+                    centerX + Math.cos(angle) * petalLength,
+                    centerY + Math.sin(angle) * petalLength
+                );
+                ctx.quadraticCurveTo(
+                    centerX + Math.cos(angle - Math.PI / petalCount) * petalWidth,
+                    centerY + Math.sin(angle - Math.PI / petalCount) * petalWidth,
+                    centerX, centerY
+                );
                 ctx.fill();
             }
 
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 50, 0, 2 * Math.PI, false);
-            ctx.fillStyle = '#8B4513'; // Brown color for the center
-            ctx.fill();
+            function animateDrawing() {
+                if (petalIndex < petalCount) {
+                    const angle = (petalIndex * 2 * Math.PI) / petalCount;
+                    drawPetal(angle);
+                    petalIndex++;
+                    setTimeout(animateDrawing, drawSpeed);
+                } else {
+                    drawCenter();
+                }
+            }
 
-            const text = document.createElement('div');
-            text.className = 'flash-text';
-            text.innerText = 'Congrats on your graduation!';
-            document.body.appendChild(text);
+            function drawCenter() {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 100, 0, 2 * Math.PI, false);
+                ctx.fillStyle = '#8B4513';
+                ctx.fill();
+                showCongratsMessage();
+            }
+
+            function showCongratsMessage() {
+                const text = document.createElement('div');
+                text.className = 'flash-text';
+                text.innerText = 'Congrats on your graduation!';
+                document.body.appendChild(text);
+            }
+
+            animateDrawing();
         }
     </script>
 </head>
