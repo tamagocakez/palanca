@@ -129,7 +129,6 @@
             color: #FFD700;
         }
     </style>
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <script>
         function checkName() {
             const letter1 = document.getElementById('letter1').value.toUpperCase();
@@ -139,7 +138,7 @@
             const name = letter1 + letter2 + letter3 + letter4;
             if (name === 'PHIL') {
                 alert('Correct password! Drawing the sunflower...');
-                document.body.innerHTML = '<py-script>' + drawSunflowerScript + '</py-script>';
+                drawSunflower();
                 setTimeout(() => {
                     window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
                 }, 10000); // 10 seconds delay before redirection
@@ -190,48 +189,69 @@
             });
         });
 
-        const drawSunflowerScript = `
-import turtle
+        function drawSunflower() {
+            const canvas = document.createElement('canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.body.appendChild(canvas);
 
-screen = turtle.Screen()
-screen.bgcolor("white")
-screen.title("Sunflower Drawing")
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const petalCount = 20;
+            const petalLength = 200;
+            const petalWidth = 80;
+            const drawSpeed = 50;
 
-pen = turtle.Turtle()
-pen.speed(0)
-pen.color("yellow")
-pen.width(3)
+            ctx.fillStyle = '#FFD700';
 
-def draw_petal():
-    pen.circle(100, 60)
-    pen.left(120)
-    pen.circle(100, 60)
-    pen.left(120)
+            let petalIndex = 0;
 
-def draw_sunflower():
-    for _ in range(36):
-        draw_petal()
-        pen.right(10)
+            function drawPetal(angle) {
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.quadraticCurveTo(
+                    centerX + Math.cos(angle + Math.PI / petalCount) * petalWidth,
+                    centerY + Math.sin(angle + Math.PI / petalCount) * petalWidth,
+                    centerX + Math.cos(angle) * petalLength,
+                    centerY + Math.sin(angle) * petalLength
+                );
+                ctx.quadraticCurveTo(
+                    centerX + Math.cos(angle - Math.PI / petalCount) * petalWidth,
+                    centerY + Math.sin(angle - Math.PI / petalCount) * petalWidth,
+                    centerX, centerY
+                );
+                ctx.fill();
+            }
 
-def draw_center():
-    pen.penup()
-    pen.goto(0, -50)
-    pen.pendown()
-    pen.color("brown")
-    pen.begin_fill()
-    pen.circle(50)
-    pen.end_fill()
+            function animateDrawing() {
+                if (petalIndex < petalCount) {
+                    const angle = (petalIndex * 2 * Math.PI) / petalCount;
+                    drawPetal(angle);
+                    petalIndex++;
+                    setTimeout(animateDrawing, drawSpeed);
+                } else {
+                    drawCenter();
+                }
+            }
 
-draw_sunflower()
-draw_center()
+            function drawCenter() {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 100, 0, 2 * Math.PI, false);
+                ctx.fillStyle = '#8B4513';
+                ctx.fill();
+                showCongratsMessage();
+            }
 
-pen.penup()
-pen.goto(0, -200)
-pen.color("black")
-pen.write("Congrats on your graduation!", align="center", font=("Arial", 24, "normal"))
+            function showCongratsMessage() {
+                const text = document.createElement('div');
+                text.className = 'flash-text';
+                text.innerText = 'Congrats on your graduation, loading sunflower.ps';
+                document.body.appendChild(text);
+            }
 
-turtle.done()
-`;
+            animateDrawing();
+        }
     </script>
 </head>
 <body>
