@@ -140,6 +140,12 @@
                 alert('Correct password! Drawing the sunflower...');
                 drawSunflower();
                 setTimeout(() => {
+                    const message = document.createElement('div');
+                    message.className = 'flash-text';
+                    message.textContent = 'Congrats on your graduation, loading sunflower.ps';
+                    document.body.appendChild(message);
+                }, 5000); // 5 seconds delay before showing the message
+                setTimeout(() => {
                     window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
                 }, 10000); // 10 seconds delay before redirection
             } else {
@@ -240,14 +246,6 @@
                 ctx.arc(centerX, centerY, 100, 0, 2 * Math.PI, false);
                 ctx.fillStyle = '#8B4513';
                 ctx.fill();
-                showCongratsMessage();
-            }
-
-            function showCongratsMessage() {
-                const text = document.createElement('div');
-                text.className = 'flash-text';
-                text.innerText = 'Congrats on your graduation, loading sunflower.ps';
-                document.body.appendChild(text);
             }
 
             animateDrawing();
