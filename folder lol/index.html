@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             background-image: url('pcBG.jpeg');
-            background-size: cover;
+            background-size: cover; 
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
@@ -36,7 +36,7 @@
             font-size: 125%;
         }
         .stop img {
-            width: 100%;
+            width: 100%; 
             max-width: 500px;
             height: auto;
         }
@@ -92,7 +92,7 @@
                 padding: 20px;
             }
             .stop img {
-                max-width: 100%;
+                max-width: 100%; 
             }
             h1 {
                 font-size: 20px;
@@ -119,15 +119,6 @@
                 margin: 2% auto;
             }
         }
-        @keyframes flash {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0; }
-        }
-        .flash-text {
-            animation: flash 1s infinite;
-            font-size: 24px;
-            color: #FFD700;
-        }
     </style>
     <script>
         function checkName() {
@@ -137,120 +128,55 @@
             const letter4 = document.getElementById('letter4').value.toUpperCase();
             const name = letter1 + letter2 + letter3 + letter4;
             if (name === 'PHIL') {
-                alert('Correct password! Drawing the sunflower...');
-                drawSunflower();
-                setTimeout(() => {
-                    const message = document.createElement('div');
-                    message.className = 'flash-text';
-                    message.textContent = 'Congrats on your graduation, loading sunflower.ps';
-                    document.body.appendChild(message);
-                }, 5000); // 5 seconds delay before showing the message
-                setTimeout(() => {
-                    window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
-                }, 10000); // 10 seconds delay before redirection
+                alert('Correct password! You are now being redirected to the palanca...');
+                window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
             } else {
                 alert('Incorrect password, please try again!');
                 clearInputs();
             }
         }
+        
+    function clearInputs() {
+        document.getElementById('letter1').value = '';
+        document.getElementById('letter2').value = '';
+        document.getElementById('letter3').value = '';
+        document.getElementById('letter4').value = '';
+        document.getElementById('letter1').focus();
+    }
 
-        function clearInputs() {
-            document.getElementById('letter1').value = '';
-            document.getElementById('letter2').value = '';
-            document.getElementById('letter3').value = '';
-            document.getElementById('letter4').value = '';
-            document.getElementById('letter1').focus();
-        }
-
-        function typeWriter(element, text, speed) {
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
+    function typeWriter(element, text, speed) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
             }
-            type();
         }
+        type();
+    }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const heading = document.getElementById('typing-heading');
-            typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
-        });
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const heading = document.getElementById('typing-heading');
+        typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
+    });
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const inputs = document.querySelectorAll('.input-container input');
-            inputs.forEach((input, index) => {
-                input.addEventListener('input', () => {
-                    if (input.value.length === 1 && index < inputs.length - 1) {
-                        inputs[index + 1].focus();
-                    }
-                });
-                input.addEventListener('keyup', (event) => {
-                    if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
-                        inputs[index - 1].focus();
-                    }
-                });
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const inputs = document.querySelectorAll('.input-container input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keyup', (event) => {
+                if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
+                    inputs[index - 1].focus();
+                }
             });
         });
-
-        function drawSunflower() {
-            const canvas = document.createElement('canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            document.body.appendChild(canvas);
-
-            const ctx = canvas.getContext('2d');
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const petalCount = 20;
-            const petalLength = 200;
-            const petalWidth = 80;
-            const drawSpeed = 50;
-
-            ctx.fillStyle = '#FFD700';
-
-            let petalIndex = 0;
-
-            function drawPetal(angle) {
-                ctx.beginPath();
-                ctx.moveTo(centerX, centerY);
-                ctx.quadraticCurveTo(
-                    centerX + Math.cos(angle + Math.PI / petalCount) * petalWidth,
-                    centerY + Math.sin(angle + Math.PI / petalCount) * petalWidth,
-                    centerX + Math.cos(angle) * petalLength,
-                    centerY + Math.sin(angle) * petalLength
-                );
-                ctx.quadraticCurveTo(
-                    centerX + Math.cos(angle - Math.PI / petalCount) * petalWidth,
-                    centerY + Math.sin(angle - Math.PI / petalCount) * petalWidth,
-                    centerX, centerY
-                );
-                ctx.fill();
-            }
-
-            function animateDrawing() {
-                if (petalIndex < petalCount) {
-                    const angle = (petalIndex * 2 * Math.PI) / petalCount;
-                    drawPetal(angle);
-                    petalIndex++;
-                    setTimeout(animateDrawing, drawSpeed);
-                } else {
-                    drawCenter();
-                }
-            }
-
-            function drawCenter() {
-                ctx.beginPath();
-                ctx.arc(centerX, centerY, 100, 0, 2 * Math.PI, false);
-                ctx.fillStyle = '#8B4513';
-                ctx.fill();
-            }
-
-            animateDrawing();
-        }
-    </script>
+    });
+</script>
 </head>
 <body>
     <div class="container">
