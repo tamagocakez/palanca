@@ -128,55 +128,58 @@
             const letter4 = document.getElementById('letter4').value.toUpperCase();
             const name = letter1 + letter2 + letter3 + letter4;
             if (name === 'PHIL') {
-                alert('Correct password! You are now being redirected to the palanca...');
-                window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
+                changeBackground();
             } else {
                 alert('Incorrect password, please try again!');
                 clearInputs();
             }
         }
         
-    function clearInputs() {
-        document.getElementById('letter1').value = '';
-        document.getElementById('letter2').value = '';
-        document.getElementById('letter3').value = '';
-        document.getElementById('letter4').value = '';
-        document.getElementById('letter1').focus();
-    }
-
-    function typeWriter(element, text, speed) {
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
+        function clearInputs() {
+            document.getElementById('letter1').value = '';
+            document.getElementById('letter2').value = '';
+            document.getElementById('letter3').value = '';
+            document.getElementById('letter4').value = '';
+            document.getElementById('letter1').focus();
         }
-        type();
-    }
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const heading = document.getElementById('typing-heading');
-        typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
-    });
+        function changeBackground() {
+            const deviceType = detectDeviceType();
+            let backgroundURL;
+            
+            switch (deviceType) {
+                case 'mobile':
+                    backgroundURL = 'MOBILEloadingscreen.gif';
+                    break;
+                case 'tablet':
+                    backgroundURL = 'TABLETloadingscreen.gif';
+                    break;
+                case 'pc':
+                    backgroundURL = 'PCloadingscreen.gif';
+                    break;
+                default:
+                    backgroundURL = ''; 
+                    break;
+            }
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const inputs = document.querySelectorAll('.input-container input');
-        inputs.forEach((input, index) => {
-            input.addEventListener('input', () => {
-                if (input.value.length === 1 && index < inputs.length - 1) {
-                    inputs[index + 1].focus();
-                }
-            });
-            input.addEventListener('keyup', (event) => {
-                if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
-                    inputs[index - 1].focus();
-                }
-            });
-        });
-    });
-</script>
+            document.body.style.backgroundImage = 'url(' + backgroundURL + ')';
+        }
+
+        function detectDeviceType() {
+            const screenWidth = window.innerWidth;
+            let deviceType;
+
+            if (screenWidth < 768) {
+                deviceType = 'mobile';
+            } else if (screenWidth < 1024) {
+                deviceType = 'tablet';
+            } else {
+                deviceType = 'pc';
+            }
+
+            return deviceType;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
