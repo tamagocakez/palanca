@@ -128,13 +128,18 @@
             const letter4 = document.getElementById('letter4').value.toUpperCase();
             const name = letter1 + letter2 + letter3 + letter4;
             if (name === 'PHIL') {
-                changeBackground();
+                document.body.innerHTML = '';
+                const deviceType = getDeviceType();
+                changeBackground(deviceType);
+                setTimeout(() => {
+                    window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
+                }, 10000);
             } else {
                 alert('Incorrect password, please try again!');
                 clearInputs();
             }
         }
-        
+
         function clearInputs() {
             document.getElementById('letter1').value = '';
             document.getElementById('letter2').value = '';
@@ -143,41 +148,68 @@
             document.getElementById('letter1').focus();
         }
 
-        function changeBackground() {
-            const deviceType = detectDeviceType();
-            let backgroundURL;
-            
-            switch (deviceType) {
-                case 'mobile':
-                    backgroundURL = 'MOBILEloadingscreen.gif';
-                    break;
-                case 'tablet':
-                    backgroundURL = 'TABLETloadingscreen.gif';
-                    break;
-                case 'pc':
-                    backgroundURL = 'PCloadingscreen.gif';
-                    break;
-                default:
-                    backgroundURL = ''; 
-                    break;
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
             }
-
-            document.body.style.backgroundImage = 'url(' + backgroundURL + ')';
+            type();
         }
 
-        function detectDeviceType() {
-            const screenWidth = window.innerWidth;
-            let deviceType;
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const heading = document.getElementById('typing-heading');
+            typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
+        });
 
-            if (screenWidth < 768) {
-                deviceType = 'mobile';
-            } else if (screenWidth < 1024) {
-                deviceType = 'tablet';
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const inputs = document.querySelectorAll('.input-container input');
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', () => {
+                    if (input.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                input.addEventListener('keyup', (event) => {
+                    if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+        });
+
+        function getDeviceType() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            if (width <= 600) {
+                return 'mobile';
+            } else if (width > 600 && height <= 600) {
+                return 'tablet';
             } else {
-                deviceType = 'pc';
+                return 'pc';
             }
+        }
 
-            return deviceType;
+        function changeBackground(deviceType) {
+            let backgroundImage;
+            switch (deviceType) {
+                case 'mobile':
+                    backgroundImage = 'MOBILEloadingscreen.gif';
+                    break;
+                case 'tablet':
+                    backgroundImage = 'TABLETloadingscreen.gif';
+                    break;
+                case 'pc':
+                    backgroundImage = 'PCloadingscreen.gif';
+                    break;
+                default:
+                    backgroundImage = 'pcBG.jpeg'; 
+                    break;
+            }
+            document.body.style.backgroundImage = `url(${backgroundImage})`;
         }
     </script>
 </head>
@@ -188,7 +220,7 @@
                 <img src="stop.png" alt="stop">
             </div>
             <h1 id="typing-heading"></h1>
-            <p>Enter the pin to continue:</p>
+            <p>Enter the PIN to continue:</p>
             <div class="input-container">
                 <input type="text" id="letter1" maxlength="1">
                 <input type="text" id="letter2" maxlength="1">
