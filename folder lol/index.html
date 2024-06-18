@@ -119,6 +119,15 @@
                 margin: 2% auto;
             }
         }
+        @keyframes flash {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0; }
+        }
+        .flash-text {
+            animation: flash 1s infinite;
+            font-size: 24px;
+            color: #FFD700;
+        }
     </style>
     <script>
         function checkName() {
@@ -128,55 +137,98 @@
             const letter4 = document.getElementById('letter4').value.toUpperCase();
             const name = letter1 + letter2 + letter3 + letter4;
             if (name === 'PHIL') {
-                alert('Correct password! You are now being redirected to the palanca...');
-                window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
+                alert('Correct password! Drawing the sunflower...');
+                drawSunflower();
+                setTimeout(() => {
+                    window.location.href = 'https://www.canva.com/design/DAGHYHZmw4o/Nk87pk5ACO5NQFNSQceZdA/edit?utm_content=DAGHYHZmw4o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
+                }, 5000); // 5 seconds delay before redirection
             } else {
                 alert('Incorrect password, please try again!');
                 clearInputs();
             }
         }
-        
-    function clearInputs() {
-        document.getElementById('letter1').value = '';
-        document.getElementById('letter2').value = '';
-        document.getElementById('letter3').value = '';
-        document.getElementById('letter4').value = '';
-        document.getElementById('letter1').focus();
-    }
 
-    function typeWriter(element, text, speed) {
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
+        function clearInputs() {
+            document.getElementById('letter1').value = '';
+            document.getElementById('letter2').value = '';
+            document.getElementById('letter3').value = '';
+            document.getElementById('letter4').value = '';
+            document.getElementById('letter1').focus();
         }
-        type();
-    }
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const heading = document.getElementById('typing-heading');
-        typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
-    });
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const inputs = document.querySelectorAll('.input-container input');
-        inputs.forEach((input, index) => {
-            input.addEventListener('input', () => {
-                if (input.value.length === 1 && index < inputs.length - 1) {
-                    inputs[index + 1].focus();
-                }
-            });
-            input.addEventListener('keyup', (event) => {
-                if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
-                    inputs[index - 1].focus();
-                }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const heading = document.getElementById('typing-heading');
+            typeWriter(heading, "🛑 Stop! This page is blocked!", 100);
+        });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const inputs = document.querySelectorAll('.input-container input');
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', () => {
+                    if (input.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                input.addEventListener('keyup', (event) => {
+                    if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
             });
         });
-    });
-</script>
+
+        function drawSunflower() {
+            document.body.innerHTML = ''; // Clear the page content
+
+            const canvas = document.createElement('canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.body.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const petalCount = 20;
+            const petalLength = 150;
+            const petalWidth = 30;
+
+            ctx.fillStyle = '#FFD700'; // Sunflower yellow color
+
+            for (let i = 0; i < petalCount; i++) {
+                const angle = (i * 2 * Math.PI) / petalCount;
+                const x = centerX + Math.cos(angle) * petalLength;
+                const y = centerY + Math.sin(angle) * petalLength;
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(x, y);
+                ctx.lineTo(centerX + Math.cos(angle + Math.PI / petalCount) * petalWidth, centerY + Math.sin(angle + Math.PI / petalCount) * petalWidth);
+                ctx.fill();
+            }
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 50, 0, 2 * Math.PI, false);
+            ctx.fillStyle = '#8B4513'; // Brown color for the center
+            ctx.fill();
+
+            const text = document.createElement('div');
+            text.className = 'flash-text';
+            text.innerText = 'Congrats on your graduation!';
+            document.body.appendChild(text);
+        }
+    </script>
 </head>
 <body>
     <div class="container">
